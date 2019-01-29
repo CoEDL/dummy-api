@@ -26,6 +26,9 @@ const rootReducer = (state = initialState, action) => {
     case 'API_SUCCESS_TRANSCRIPTION_FILES':
       return { ...state, model: {...state.model, transcriptionFiles:action.data.transcriptionFiles} }
 
+    case 'API_SUCCESS_ADDITIONAL_WORD_FILES':
+      return { ...state, model: {...state.model, transcriptionFiles:action.data.transcriptionFiles} }
+
     default:
       return state
   }

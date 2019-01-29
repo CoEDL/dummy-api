@@ -6,13 +6,24 @@ const baseUrl = 'https://app.fakejson.com/q/'
 const token = '?token=' + process.env.REACT_APP_TOKEN
 
 
-const getApi = (url) => {
+var Handler={};
+
+Handler.apiSuccessAudioFiles = data => {
+  return { type: 'API_SUCCESS_AUDIO_FILES', data }
+}
+
+Handler.apiSuccessTranscriptionFiles = data => {
+  return { type: 'API_SUCCESS_TRANSCRIPTION_FILES', data }
+}
+
+
+const getApi = (url, somefunc) => {
   return dispatch => {
     axios({
       method: 'get',
       url: url
     }).then(function(resp) {
-      dispatch(apiSuccessTranscriptionFiles(resp.data))
+      dispatch(Handler[somefunc](resp.data))
     })
   }
 }
@@ -21,16 +32,23 @@ const getApi = (url) => {
 export const apiSuccessAudioFiles = data => {
   return { type: 'API_SUCCESS_AUDIO_FILES', data }
 }
-export const getAudioFiles = () => {
-  const url = baseUrl + '7py7QEtL' + token
-  return getApi(url)
-}
-
 export const apiSuccessTranscriptionFiles = data => {
   return { type: 'API_SUCCESS_TRANSCRIPTION_FILES', data }
 }
+// export const apiSuccessAdditionalWordFiles = data => {
+//   return { type: 'API_SUCCESS_ADDITIONAL_WORD_FILES', data }
+// }
+
+export const getAudioFiles = () => {
+  const url = baseUrl + '7py7QEtL' + token
+  return getApi(url, 'apiSuccessAudioFiles')
+}
 export const getTranscriptionFiles = () => {
   const url = baseUrl + 'HItiwsJR' + token
-  return getApi(url)
+  return getApi(url, 'apiSuccessTranscriptionFiles')
 }
+// export const getAdditionalWordFiles = () => {
+//   const url = baseUrl + 'HItiwsJR' + token
+//   return getApi(url, 'apiSuccessAdditionalWordFiles')
+// }
 

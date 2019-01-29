@@ -1,37 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTranscriptionFiles } from './redux/actions'
+import { getAudioFiles, getTranscriptionFiles } from './redux/actions'
 
 class App extends Component {
-  fooHandler = () => {
-    const { changeFoo } = this.props
-    changeFoo('thud')
-  }
 
-  incrementHandler = () => {
-    const { incrementSomething } = this.props
-    incrementSomething()
-  }
+  // inputHandler = event => {
+  //   const { updateMyName } = this.props
+  //   updateMyName(event.target.value)
+  // }
 
-  inputHandler = event => {
-    const { updateMyName } = this.props
-    updateMyName(event.target.value)
-  }
-
-  getTranscriptionFilesHandler = () => {
-    const { getTranscriptionFiles } = this.props
-    getTranscriptionFiles()
-  }
+  // getTranscriptionFilesHandler = () => {
+  //   const { getTranscriptionFiles } = this.props
+  //   getTranscriptionFiles()
+  // }
 
   render = () => {
-    const {name, transcriptionFiles} = this.props
+    const {
+      audioFiles,
+      getAudioFiles,
+      transcriptionFiles,
+      getTranscriptionFiles
+    } = this.props
+
     return (
       <div>
+
         <section>
-        {name}
-          <button onClick={this.getTranscriptionFilesHandler}>get transcription files</button>
+          <button onClick={getAudioFiles}>get audio files</button>
+          {JSON.stringify(audioFiles)}
+        </section>
+
+        <section>
+          <button onClick={getTranscriptionFiles}>get transcription files</button>
           {JSON.stringify(transcriptionFiles)}
         </section>
+
       </div>
     )
   }
@@ -39,10 +42,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     name: state.model.name,
+    audioFiles: state.model.audioFiles,
     transcriptionFiles: state.model.transcriptionFiles
   }
 }
 const mapDispatchToProps = dispatch => ({
+  getAudioFiles: () => {
+    dispatch(getAudioFiles())
+  },
   getTranscriptionFiles: () => {
     dispatch(getTranscriptionFiles())
   }
