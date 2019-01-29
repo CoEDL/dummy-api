@@ -40,10 +40,8 @@ class App extends Component {
     return (
       <Container>
 
-      <p> this demo is here </p>
-
-        <Message color='teal'>
-          <p>API response: <h3>{apiResponse.status}</h3></p>
+        <Message color='teal' size="big">
+          <p>API response: <strong>{apiResponse.status}</strong></p>
         </Message>
 
         <section>
@@ -80,6 +78,8 @@ class App extends Component {
           <br />
           <Button onClick={() => updateSettings({"someSetting": 123})}>update settings</Button>
         </section>
+
+        <p>This app is at <a href="https://github.com/CoEDL/elpis-dummy-api">github.com/CoEDL/elpis-dummy-api</a></p>
 
       </Container>
     )
