@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Button, Container, Message } from 'semantic-ui-react'
+
 import {
   getAudioFiles,
   getTranscriptionFiles,
@@ -32,53 +34,60 @@ class App extends Component {
       updateAdditionalWordFiles,
       updatePronunciationDictionary,
       updateSettings,
-      response
+      apiResponse
     } = this.props
 
     return (
-      <div>
+      <Container>
+
+      <p> this demo is here </p>
+
+        <Message color='teal'>
+          <p>API response: <h3>{apiResponse.status}</h3></p>
+        </Message>
 
         <section>
-          <button onClick={getAudioFiles}>get audio files</button>
-          <button onClick={() => updateAudioFiles("field-recording.wav")}>update audio file</button>
+          <Button onClick={getAudioFiles}>get audio files</Button>
           {JSON.stringify(audioFiles)}
+          <br />
+          <Button onClick={() => updateAudioFiles("field-recording.wav")}>update audio file</Button>
         </section>
 
         <section>
-          <button onClick={getTranscriptionFiles}>get transcription files</button>
-          <button onClick={() => updateTranscriptionFiles("field-recording.eaf")}>update transcription file</button>
+          <Button onClick={getTranscriptionFiles}>get transcription files</Button>
           {JSON.stringify(transcriptionFiles)}
+          <br />
+          <Button onClick={() => updateTranscriptionFiles("field-recording.eaf")}>update transcription file</Button>
         </section>
 
         <section>
-          <button onClick={getAdditionalWordFiles}>get additional word files</button>
-          <button onClick={() => updateAdditionalWordFiles("additional-word-file.wav")}>update word file</button>
+          <Button onClick={getAdditionalWordFiles}>get additional word files</Button>
           {JSON.stringify(additionalWordFiles)}
+          <br />
+          <Button onClick={() => updateAdditionalWordFiles("additional-word-file.wav")}>update word file</Button>
         </section>
 
         <section>
-          <button onClick={getPronunciationDictionary}>get pron dict file</button>
-          <button onClick={() => updatePronunciationDictionary("pron-dict.txt")}>update pron dict</button>
+          <Button onClick={getPronunciationDictionary}>get pron dict file</Button>
           {JSON.stringify(pronunciationDictionary)}
+          <br />
+          <Button onClick={() => updatePronunciationDictionary("pron-dict.txt")}>update pron dict</Button>
         </section>
 
         <section>
-          <button onClick={getSettings}>get settings</button>
-          <button onClick={() => updateSettings({"someSetting": 123})}>update settings</button>
+          <Button onClick={getSettings}>get settings</Button>
           {JSON.stringify(settings)}
+          <br />
+          <Button onClick={() => updateSettings({"someSetting": 123})}>update settings</Button>
         </section>
 
-        <section>
-          <p>response: {response}</p>
-        </section>
-
-      </div>
+      </Container>
     )
   }
 }
 const mapStateToProps = state => {
   return {
-    response: state.response,
+    apiResponse: state.apiResponse,
     audioFiles: state.model.audioFiles,
     transcriptionFiles: state.model.transcriptionFiles,
     additionalWordFiles: state.model.additionalWordFiles,

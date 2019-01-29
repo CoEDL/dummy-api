@@ -14,8 +14,9 @@ code {
 }
 
 section {
-	margin: 2rem;
+	margin: 2rem 0;
 }
 button {
 	margin: 0 1rem;
+  font-size: 1.2rem;
 }
