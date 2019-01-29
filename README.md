@@ -12,7 +12,7 @@ Use beeceptor.com to test endpoints.
 > https://beeceptor.com/console/elpis
 
 
-
+```
 
 GET
     delay 1sec 
@@ -49,3 +49,5 @@ GET /settings
 
 POST /settings 
     reponse { "status": "Settings updated"}
+
+```
