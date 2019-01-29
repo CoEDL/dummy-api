@@ -54,34 +54,28 @@ var successHandler={
 // Export these actions so they _can_ be used in components
 
 export const getAudioFiles = () => {
-  // const url = baseUrl + '7py7QEtL' + token
   const url = baseUrl + 'audio-files'
   return getApi(url, 'getAudioFilesSuccess')
 }
 export const getTranscriptionFiles = () => {
-  // const url = baseUrl + 'HItiwsJR' + token
   const url = baseUrl + 'transcription-files'
   return getApi(url, 'getTranscriptionFilesSuccess')
 }
 export const getAdditionalWordFiles = () => {
-  // const url = baseUrl + 'dUAXBBal' + token
   const url = baseUrl + 'additional-word-files'
   return getApi(url, 'getAdditionalWordFilesSuccess')
 }
 export const getPronunciationDictionary = () => {
-  // const url = baseUrl + 'eoBTcfR2' + token
   const url = baseUrl + 'pronunciation-dictionary'
   return getApi(url, 'getPronunciationDictionarySuccess')
 }
 export const getSettings = () => {
-  // const url = baseUrl + '8GyUT4EA' + token
   const url = baseUrl + 'settings'
   return getApi(url, 'getSettingsSuccess')
 }
 
 
 export const updateSettings = (postData) => {
-  // const url = baseUrl + '8GyUT4EA' + token
   const url = baseUrl + 'settings'
   return postApi(url, postData, 'updateSettingsSuccess')
 }
