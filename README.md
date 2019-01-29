@@ -12,11 +12,14 @@ Use beeceptor.com to test endpoints.
 > https://beeceptor.com/console/elpis
 
 
-```
+I've mocked up some endpoints with dummy response data. For GET requests, the endpoints return headers and some JSON data (See the `/mock-response-body.json` file for the details of what the mockups return). For POST updates, the mockups return headers and a status message. 
 
+May be good to use a status code as well as the response code? 
+
+
+
+```
 GET
-    delay 1sec 
-    return 200 
     headers {"Content-Type": "application/json"}
 
 POST
@@ -26,9 +29,7 @@ POST
               "vary": "Accept-Encoding"
             }
 
-
 GET /audio-files
-    See `mock-response-body.json` file for response data.
 POST /audio-files
     reponse { "status": "Audio files updated"}
 
@@ -44,9 +45,7 @@ GET /pronunciation-dictionary
 POST /pronunciation-dictionary
     reponse { "status": "Pronunciation dictionary updated"}
 
-GET /settings 
-    reponse {"settings": {"audioFrequency": 11000,"mfccStuff": 9000,"nGram": 1,"beam": 10}}
-
+GET /settings
 POST /settings 
     reponse { "status": "Settings updated"}
 
