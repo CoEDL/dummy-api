@@ -1,54 +1,88 @@
 import axios from 'axios'
 
-// app.fakejson.com/q/HItiwsJR?token=YOUR_TOKEN_HERE
-
-const baseUrl = 'https://app.fakejson.com/q/'
-const token = '?token=' + process.env.REACT_APP_TOKEN
+// Use beeceptor to test API endpoints
+const baseUrl = 'https://elpis.free.beeceptor.com/'
 
 
-var Handler={};
-
-Handler.apiSuccessAudioFiles = data => {
-  return { type: 'API_SUCCESS_AUDIO_FILES', data }
-}
-
-Handler.apiSuccessTranscriptionFiles = data => {
-  return { type: 'API_SUCCESS_TRANSCRIPTION_FILES', data }
-}
-
-
-const getApi = (url, somefunc) => {
+const getApi = (url, successFunction) => {
   return dispatch => {
-    axios({
-      method: 'get',
-      url: url
-    }).then(function(resp) {
-      dispatch(Handler[somefunc](resp.data))
-    })
+    axios.get(url)
+      .then(function(resp) {
+        dispatch(successHandler[successFunction](resp.data))
+      })
+      // add error actions
+  }
+}
+
+const postApi = (url, postData, successFunction) => {
+  return dispatch => {
+    axios.post(url, postData)
+      .then(function(resp) {
+        dispatch(successHandler[successFunction](resp))
+      })
+      // add error actions
   }
 }
 
 
-export const apiSuccessAudioFiles = data => {
-  return { type: 'API_SUCCESS_AUDIO_FILES', data }
+// Lets bundle these 'success' actions into an object
+// So we can dynamically call them from out API actions
+// They don't need to be used directly in components
+
+var successHandler={
+  getAudioFilesSuccess: function(data) {
+    return { type: 'GET_AUDIO_FILES_SUCCESS', data }
+  },
+  getTranscriptionFilesSuccess: function (data) {
+    return { type: 'GET_TRANSCRIPTION_FILES_SUCCESS', data }
+  },
+  getAdditionalWordFilesSuccess: function (data) {
+    return { type: 'GET_ADDITIONAL_WORD_FILES_SUCCESS', data }
+  },
+  getPronunciationDictionarySuccess: function (data) {
+    return { type: 'GET_PRONUNCIATION_DICTIONARY_SUCCESS', data }
+  },
+  getSettingsSuccess: function (data) {
+    return { type: 'GET_SETTINGS_SUCCESS', data }
+  },
+  updateSettingsSuccess: function (data) {
+    console.log(data)
+    return { type: 'UPDATE_SETTINGS_SUCCESS', data }
+  }
 }
-export const apiSuccessTranscriptionFiles = data => {
-  return { type: 'API_SUCCESS_TRANSCRIPTION_FILES', data }
-}
-// export const apiSuccessAdditionalWordFiles = data => {
-//   return { type: 'API_SUCCESS_ADDITIONAL_WORD_FILES', data }
-// }
+
+// Export these actions so they _can_ be used in components
 
 export const getAudioFiles = () => {
-  const url = baseUrl + '7py7QEtL' + token
-  return getApi(url, 'apiSuccessAudioFiles')
+  // const url = baseUrl + '7py7QEtL' + token
+  const url = baseUrl + 'audio-files'
+  return getApi(url, 'getAudioFilesSuccess')
 }
 export const getTranscriptionFiles = () => {
-  const url = baseUrl + 'HItiwsJR' + token
-  return getApi(url, 'apiSuccessTranscriptionFiles')
+  // const url = baseUrl + 'HItiwsJR' + token
+  const url = baseUrl + 'transcription-files'
+  return getApi(url, 'getTranscriptionFilesSuccess')
 }
-// export const getAdditionalWordFiles = () => {
-//   const url = baseUrl + 'HItiwsJR' + token
-//   return getApi(url, 'apiSuccessAdditionalWordFiles')
-// }
+export const getAdditionalWordFiles = () => {
+  // const url = baseUrl + 'dUAXBBal' + token
+  const url = baseUrl + 'additional-word-files'
+  return getApi(url, 'getAdditionalWordFilesSuccess')
+}
+export const getPronunciationDictionary = () => {
+  // const url = baseUrl + 'eoBTcfR2' + token
+  const url = baseUrl + 'pronunciation-dictionary'
+  return getApi(url, 'getPronunciationDictionarySuccess')
+}
+export const getSettings = () => {
+  // const url = baseUrl + '8GyUT4EA' + token
+  const url = baseUrl + 'settings'
+  return getApi(url, 'getSettingsSuccess')
+}
+
+
+export const updateSettings = (postData) => {
+  // const url = baseUrl + '8GyUT4EA' + token
+  const url = baseUrl + 'settings'
+  return postApi(url, postData, 'updateSettingsSuccess')
+}
 

@@ -1,0 +1,75 @@
+
+// saved resources data
+
+// test error responses too!
+
+
+// audio files 7py7QEtL
+{
+  "parameters": {
+    "code": 200
+  },
+  "data": {
+    "audioFiles": [
+      "filename1.wav",
+      "filename2.wav",
+      "filename3.wav",
+      "filename4.wav"
+    ]
+  }
+}
+
+// transcription files HItiwsJR
+{
+  "parameters": {
+    "code": 200
+  },
+  "data": {
+    "transcriptionFiles": [
+      "filename1.eaf",
+      "filename2.eaf",
+      "filename3.eaf",
+      "filename4.eaf"
+    ]
+  }
+}
+
+// additional word files dUAXBBal
+{
+  "parameters": {
+    "code": 200
+  },
+  "data": {
+      "additionalWordFiles": [
+      "words.txt",
+      "extra-corpus.txt"
+    ]
+  }
+}
+
+// pronunciation dictionary eoBTcfR2
+{
+  "parameters": {
+    "code": 200
+  },
+  "data": {
+    "pronunciationDictionary": [
+      "letter-to-sound.txt"
+    ]
+  }
+}
+
+// settings 8GyUT4EA
+{
+  "parameters": {
+    "code": 200
+  },
+  "data": {
+    "settings": {
+      "audioFrequency": 11000,
+      "mfccStuff": 9000,
+      "nGram": 1,
+      "beam": 10
+    }
+  }
+}
