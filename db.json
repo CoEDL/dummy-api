@@ -1,0 +1,43 @@
+{
+  "model": {
+    "name": "first model",
+    "audioFiles": [
+      "filename1.wav",
+      "filename2.wav",
+      "filename3.wav",
+      "filename4.wav"
+    ],
+    "transcriptionFiles": [
+      "filename1.eaf",
+      "filename2.eaf",
+      "filename3.eaf",
+      "filename4.eaf"
+    ],
+    "additionalWordFiles": [
+      "words.txt",
+      "extra-corpus.txt"
+    ],
+    "pronunciationDictionary": [
+      "letter-to-sound.txt"
+    ],
+    "settings": {
+      "audioFrequency": 11000,
+      "mfccStuff": 9000,
+      "nGram": 1,
+      "beam": 10
+    },
+    "date": "2019-01-29 16:34:40.278298",
+    "errors": {}
+  },
+  "transcription": {
+    "name": null,
+    "modelName": "basket case",
+    "results": {
+      "txt": "the three mice ran up the hill to fetch a pail of water"
+    },
+    "audioFiles": [
+      "filename1"
+    ],
+    "date": "2019-01-29 16:34:40.278298"
+  }
+}
