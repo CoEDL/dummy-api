@@ -6,6 +6,10 @@ import {
   getAdditionalWordFiles,
   getPronunciationDictionary,
   getSettings,
+  updateAudioFiles,
+  updateTranscriptionFiles,
+  updateAdditionalWordFiles,
+  updatePronunciationDictionary,
   updateSettings
 } from './redux/actions'
 
@@ -23,6 +27,10 @@ class App extends Component {
       getPronunciationDictionary,
       settings,
       getSettings,
+      updateAudioFiles,
+      updateTranscriptionFiles,
+      updateAdditionalWordFiles,
+      updatePronunciationDictionary,
       updateSettings,
       response
     } = this.props
@@ -32,28 +40,32 @@ class App extends Component {
 
         <section>
           <button onClick={getAudioFiles}>get audio files</button>
+          <button onClick={() => updateAudioFiles("field-recording.wav")}>update audio file</button>
           {JSON.stringify(audioFiles)}
         </section>
 
         <section>
           <button onClick={getTranscriptionFiles}>get transcription files</button>
+          <button onClick={() => updateTranscriptionFiles("field-recording.eaf")}>update transcription file</button>
           {JSON.stringify(transcriptionFiles)}
         </section>
 
         <section>
           <button onClick={getAdditionalWordFiles}>get additional word files</button>
+          <button onClick={() => updateAdditionalWordFiles("additional-word-file.wav")}>update word file</button>
           {JSON.stringify(additionalWordFiles)}
         </section>
 
         <section>
           <button onClick={getPronunciationDictionary}>get pron dict file</button>
+          <button onClick={() => updatePronunciationDictionary("pron-dict.txt")}>update pron dict</button>
           {JSON.stringify(pronunciationDictionary)}
         </section>
 
         <section>
           <button onClick={getSettings}>get settings</button>
+          <button onClick={() => updateSettings({"someSetting": 123})}>update settings</button>
           {JSON.stringify(settings)}
-          <button onClick={() => updateSettings({"someSetting": 123})}>POST settings</button>
         </section>
 
         <section>
@@ -89,6 +101,18 @@ const mapDispatchToProps = dispatch => ({
   },
   getSettings: () => {
     dispatch(getSettings())
+  },
+  updateAudioFiles: (data) => {
+    dispatch(updateAudioFiles(data))
+  },
+  updateTranscriptionFiles: (data) => {
+    dispatch(updateTranscriptionFiles(data))
+  },
+  updateAdditionalWordFiles: (data) => {
+    dispatch(updateAdditionalWordFiles(data))
+  },
+  updatePronunciationDictionary: (data) => {
+    dispatch(updatePronunciationDictionary(data))
   },
   updateSettings: (data) => {
     dispatch(updateSettings(data))

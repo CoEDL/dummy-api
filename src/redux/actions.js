@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Use beeceptor to test API endpoints
-const baseUrl = 'https://elpis.free.beeceptor.com/'
+const baseUrl = 'https://elpis.free.beeceptor.com'
 
 
 const getApi = (url, successFunction) => {
@@ -45,38 +45,68 @@ var successHandler={
   getSettingsSuccess: function (data) {
     return { type: 'GET_SETTINGS_SUCCESS', data }
   },
+  updateAudioFilesSuccess: function (data) {
+    return { type: 'UPDATE_AUDIO_FILES_SUCCESS', data }
+  },
+  updateTranscriptionFilesSuccess: function (data) {
+    return { type: 'UPDATE_TRANSCRIPTION_FILES_SUCCESS', data }
+  },
+  updateAdditionalWordFilesSuccess: function (data) {
+    return { type: 'UPDATE_ADDITIONAL_WORD_FILES_SUCCESS', data }
+  },
+  updatePronunciationDictionarySuccess: function (data) {
+    return { type: 'UPDATE_PRONUNCIATION_DICTIONARY_SUCCESS', data }
+  },
   updateSettingsSuccess: function (data) {
-    console.log(data)
     return { type: 'UPDATE_SETTINGS_SUCCESS', data }
   }
 }
 
 // Export these actions so they _can_ be used in components
 
+// GET
+
 export const getAudioFiles = () => {
-  const url = baseUrl + 'audio-files'
+  const url = baseUrl + '/audio-files'
   return getApi(url, 'getAudioFilesSuccess')
 }
 export const getTranscriptionFiles = () => {
-  const url = baseUrl + 'transcription-files'
+  const url = baseUrl + '/transcription-files'
   return getApi(url, 'getTranscriptionFilesSuccess')
 }
 export const getAdditionalWordFiles = () => {
-  const url = baseUrl + 'additional-word-files'
+  const url = baseUrl + '/additional-word-files'
   return getApi(url, 'getAdditionalWordFilesSuccess')
 }
 export const getPronunciationDictionary = () => {
-  const url = baseUrl + 'pronunciation-dictionary'
+  const url = baseUrl + '/pronunciation-dictionary'
   return getApi(url, 'getPronunciationDictionarySuccess')
 }
 export const getSettings = () => {
-  const url = baseUrl + 'settings'
+  const url = baseUrl + '/settings'
   return getApi(url, 'getSettingsSuccess')
 }
 
+// POST
 
+export const updateAudioFiles = (postData) => {
+  const url = baseUrl + '/audio-files'
+  return postApi(url, postData, 'updateAudioFilesSuccess')
+}
+export const updateTranscriptionFiles = (postData) => {
+  const url = baseUrl + '/transcription-files'
+  return postApi(url, postData, 'updateTranscriptionFilesSuccess')
+}
+export const updateAdditionalWordFiles = (postData) => {
+  const url = baseUrl + '/additional-word-files'
+  return postApi(url, postData, 'updateAdditionalWordFilesSuccess')
+}
+export const updatePronunciationDictionary = (postData) => {
+  const url = baseUrl + '/pronunciation-dictionary'
+  return postApi(url, postData, 'updatePronunciationDictionarySuccess')
+}
 export const updateSettings = (postData) => {
-  const url = baseUrl + 'settings'
+  const url = baseUrl + '/settings'
   return postApi(url, postData, 'updateSettingsSuccess')
 }
 

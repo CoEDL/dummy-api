@@ -35,8 +35,11 @@ const rootReducer = (state = initialState, action) => {
     case 'GET_SETTINGS_SUCCESS':
       return { ...state, model: {...state.model, settings:action.data.settings} }
 
+    case 'UPDATE_AUDIO_FILES_SUCCESS':
+    case 'UPDATE_TRANSCRIPTION_FILES_SUCCESS':
+    case 'UPDATE_ADDITIONAL_WORD_FILES_SUCCESS':
+    case 'UPDATE_PRONUNCIATION_DICTIONARY_SUCCESS':
     case 'UPDATE_SETTINGS_SUCCESS':
-      console.log(action.data.data.status)
       return { ...state, response: action.data.data.status }
 
     default:
