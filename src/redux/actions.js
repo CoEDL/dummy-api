@@ -29,10 +29,14 @@ const postApi = (url, postData, successFunction) => {
   }
 }
 
-// We can handle errors generically, or have custom handlers
+// We can handle errors generically,
+// or for custom handlers make an object like successHandler
+
 const errorHandler = (data) => {
     return { type: 'API_ERROR', data }
 }
+
+
 
 // Lets bundle these 'success' actions into an object
 // So we can dynamically call them from out API actions
@@ -71,6 +75,9 @@ var successHandler = {
     return { type: 'TEST_BLOB_SUCCESS', data }
   }
 }
+
+
+
 
 // Export these actions so they _can_ be used in components
 

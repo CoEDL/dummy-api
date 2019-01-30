@@ -40,11 +40,6 @@ const rootReducer = (state = initialState, action) => {
 
     case 'API_SUCCESS':
     case 'UPDATE_NAME_SUCCESS':
-    case 'UPDATE_AUDIO_FILES_SUCCESS':
-    case 'UPDATE_TRANSCRIPTION_FILES_SUCCESS':
-    case 'UPDATE_ADDITIONAL_WORD_FILES_SUCCESS':
-    case 'UPDATE_PRONUNCIATION_DICTIONARY_SUCCESS':
-    case 'UPDATE_SETTINGS_SUCCESS':
     case 'TEST_BLOB_SUCCESS':
       // note that the post response is in format {status:"response message"}
       return { ...state, apiResponse: action.data.data.status}
