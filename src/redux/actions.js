@@ -3,13 +3,16 @@ import axios from 'axios'
 // Use beeceptor to test API endpoints
 const baseUrl = 'https://elpis.free.beeceptor.com'
 
-
 const getApi = (url, successFunction) => {
   return dispatch => {
     axios.get(url)
       .then((resp) => {
+        // If the API call went OK (HTTP status 200),
+        // dispatch the success handler that came with the request
         dispatch(successHandler[successFunction](resp.data))
       }).catch((error) => {
+        // For HTTP 400 error responses, dipatch a generic error
+        // or we could use a similar pattern as success for custom actions
         dispatch(errorHandler(error))
       })
   }
