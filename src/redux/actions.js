@@ -30,6 +30,9 @@ const postApi = (url, postData, successFunction) => {
 // They don't need to be used directly in components
 
 var successHandler={
+  getNameSuccess: function(data) {
+    return { type: 'GET_NAME_SUCCESS', data }
+  },
   getAudioFilesSuccess: function(data) {
     return { type: 'GET_AUDIO_FILES_SUCCESS', data }
   },
@@ -44,6 +47,9 @@ var successHandler={
   },
   getSettingsSuccess: function (data) {
     return { type: 'GET_SETTINGS_SUCCESS', data }
+  },
+  updateNameSuccess: function (data) {
+    return { type: 'UPDATE_NAME_SUCCESS', data }
   },
   updateAudioFilesSuccess: function (data) {
     return { type: 'UPDATE_AUDIO_FILES_SUCCESS', data }
@@ -66,6 +72,10 @@ var successHandler={
 
 // GET
 
+export const getName = () => {
+  const url = baseUrl + '/name'
+  return getApi(url, 'getNameSuccess')
+}
 export const getAudioFiles = () => {
   const url = baseUrl + '/audio-files'
   return getApi(url, 'getAudioFilesSuccess')
@@ -88,7 +98,11 @@ export const getSettings = () => {
 }
 
 // POST
-
+// the postData here is received by the beeceptor endpoint
+export const updateName = (postData) => {
+  const url = baseUrl + '/name'
+  return postApi(url, postData, 'updateNameSuccess')
+}
 export const updateAudioFiles = (postData) => {
   const url = baseUrl + '/audio-files'
   return postApi(url, postData, 'updateAudioFilesSuccess')

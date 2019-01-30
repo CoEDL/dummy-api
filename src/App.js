@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import { Button, Container, Message } from 'semantic-ui-react'
 
 import {
+  getName,
   getAudioFiles,
   getTranscriptionFiles,
   getAdditionalWordFiles,
   getPronunciationDictionary,
   getSettings,
+  updateName,
   updateAudioFiles,
   updateTranscriptionFiles,
   updateAdditionalWordFiles,
@@ -19,6 +21,8 @@ class App extends Component {
 
   render = () => {
     const {
+      name,
+      getName,
       audioFiles,
       getAudioFiles,
       transcriptionFiles,
@@ -29,6 +33,7 @@ class App extends Component {
       getPronunciationDictionary,
       settings,
       getSettings,
+      updateName,
       updateAudioFiles,
       updateTranscriptionFiles,
       updateAdditionalWordFiles,
@@ -43,6 +48,13 @@ class App extends Component {
         <Message color='teal' size="big">
           <p>API response: <strong>{apiResponse.status}</strong></p>
         </Message>
+
+        <section>
+          <Button onClick={getName}>get name</Button>
+          {JSON.stringify(name)}
+          <br />
+          <Button onClick={() => updateName("field recording model")}>update name</Button>
+        </section>
 
         <section>
           <Button onClick={getAudioFiles}>get audio files</Button>
@@ -88,6 +100,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     apiResponse: state.apiResponse,
+    name: state.model.name,
     audioFiles: state.model.audioFiles,
     transcriptionFiles: state.model.transcriptionFiles,
     additionalWordFiles: state.model.additionalWordFiles,
@@ -96,6 +109,9 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => ({
+  getName: () => {
+    dispatch(getName())
+  },
   getAudioFiles: () => {
     dispatch(getAudioFiles())
   },
@@ -110,6 +126,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getSettings: () => {
     dispatch(getSettings())
+  },
+  updateName: (data) => {
+    dispatch(updateName(data))
   },
   updateAudioFiles: (data) => {
     dispatch(updateAudioFiles(data))
