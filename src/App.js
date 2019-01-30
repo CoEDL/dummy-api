@@ -21,12 +21,14 @@ import {
 
 class App extends Component {
 
+  // We can send file data to the API using FormData
   handleBlob = () => {
     const {testBlob} = this.props
     const blob = new Blob(["i am a blob"]);
     let fd = new FormData()
     fd.append('fname', 'test.txt')
     fd.append('data', blob)
+    // Now, dispatch the action with the form data as a payload
     testBlob(fd)
   }
 
@@ -109,7 +111,7 @@ class App extends Component {
         </section>
 
         <section>
-          <Button onClick={this.handleBlob}>Blob test</Button>
+          <Button onClick={this.handleBlob}>send a blob</Button>
         </section>
 
         <hr />
