@@ -39,6 +39,7 @@ const errorHandler = (data) => {
 // They don't need to be used directly in components
 
 var successHandler = {
+  // These are custom success actions for GET calls
   getNameSuccess: function(data) {
     return { type: 'GET_NAME_SUCCESS', data }
   },
@@ -57,24 +58,15 @@ var successHandler = {
   getSettingsSuccess: function (data) {
     return { type: 'GET_SETTINGS_SUCCESS', data }
   },
+  // This is a generic success action, use it for POST calls
+  apiSuccess: function (data) {
+    return { type: 'API_SUCCESS', data }
+  },
+  // We could do custom success actions too, like this..
   updateNameSuccess: function (data) {
     return { type: 'UPDATE_NAME_SUCCESS', data }
   },
-  updateAudioFilesSuccess: function (data) {
-    return { type: 'UPDATE_AUDIO_FILES_SUCCESS', data }
-  },
-  updateTranscriptionFilesSuccess: function (data) {
-    return { type: 'UPDATE_TRANSCRIPTION_FILES_SUCCESS', data }
-  },
-  updateAdditionalWordFilesSuccess: function (data) {
-    return { type: 'UPDATE_ADDITIONAL_WORD_FILES_SUCCESS', data }
-  },
-  updatePronunciationDictionarySuccess: function (data) {
-    return { type: 'UPDATE_PRONUNCIATION_DICTIONARY_SUCCESS', data }
-  },
-  updateSettingsSuccess: function (data) {
-    return { type: 'UPDATE_SETTINGS_SUCCESS', data }
-  },
+  // Custom success action for the test blob action
   testBlobSuccess: function (data) {
     return { type: 'TEST_BLOB_SUCCESS', data }
   }
@@ -118,30 +110,34 @@ export const getSettings = () => {
 }
 
 // POST
+
 // the postData here is received by the beeceptor endpoint
+
+// this action will result in a custom success action
 export const updateName = (postData) => {
   const url = baseUrl + '/name'
   return postApi(url, postData, 'updateNameSuccess')
 }
+// these actions will result in generic success actions
 export const updateAudioFiles = (postData) => {
   const url = baseUrl + '/audio-files'
-  return postApi(url, postData, 'updateAudioFilesSuccess')
+  return postApi(url, postData, 'apiSuccess')
 }
 export const updateTranscriptionFiles = (postData) => {
   const url = baseUrl + '/transcription-files'
-  return postApi(url, postData, 'updateTranscriptionFilesSuccess')
+  return postApi(url, postData, 'apiSuccess')
 }
 export const updateAdditionalWordFiles = (postData) => {
   const url = baseUrl + '/additional-word-files'
-  return postApi(url, postData, 'updateAdditionalWordFilesSuccess')
+  return postApi(url, postData, 'apiSuccess')
 }
 export const updatePronunciationDictionary = (postData) => {
   const url = baseUrl + '/pronunciation-dictionary'
-  return postApi(url, postData, 'updatePronunciationDictionarySuccess')
+  return postApi(url, postData, 'apiSuccess')
 }
 export const updateSettings = (postData) => {
   const url = baseUrl + '/settings'
-  return postApi(url, postData, 'updateSettingsSuccess')
+  return postApi(url, postData, 'apiSuccess')
 }
 
 // TEST BLOB

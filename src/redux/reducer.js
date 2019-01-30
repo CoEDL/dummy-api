@@ -38,7 +38,7 @@ const rootReducer = (state = initialState, action) => {
     case 'GET_SETTINGS_SUCCESS':
       return { ...state, apiResponse:'', model: {...state.model, settings:action.data.settings} }
 
-
+    case 'API_SUCCESS':
     case 'UPDATE_NAME_SUCCESS':
     case 'UPDATE_AUDIO_FILES_SUCCESS':
     case 'UPDATE_TRANSCRIPTION_FILES_SUCCESS':

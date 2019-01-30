@@ -108,18 +108,14 @@ class App extends Component {
           <Button onClick={() => updateSettings({"someSetting": 123})}>update settings</Button>
         </section>
 
-        <hr />
-
-        Blob test
-
-
         <section>
           <Button onClick={this.handleBlob}>Blob test</Button>
         </section>
 
+        <hr />
 
-
-        <p>This app is at <a href="https://github.com/CoEDL/elpis-dummy-api">github.com/CoEDL/elpis-dummy-api</a></p>
+        <p>App code is at <a href="https://github.com/CoEDL/elpis-dummy-api">github.com/CoEDL/elpis-dummy-api</a></p>
+        <p>Really helps to look at the accompanying <a href="https://beeceptor.com/console/elpis">Beeceptor.com</a> console while you play. Sign in required. </p>
 
       </Container>
     )
