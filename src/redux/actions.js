@@ -12,7 +12,6 @@ const getApi = (url, successFunction) => {
       }).catch((error) => {
         dispatch(errorHandler(error))
       })
-      // add error actions
   }
 }
 
@@ -24,7 +23,6 @@ const postApi = (url, postData, successFunction) => {
       }).catch((error) => {
         dispatch(errorHandler(error))
       })
-      // add error actions
   }
 }
 
