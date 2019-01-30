@@ -7,8 +7,10 @@ const baseUrl = 'https://elpis.free.beeceptor.com'
 const getApi = (url, successFunction) => {
   return dispatch => {
     axios.get(url)
-      .then(function(resp) {
+      .then((resp) => {
         dispatch(successHandler[successFunction](resp.data))
+      }).catch((error) => {
+        dispatch(errorHandler(error))
       })
       // add error actions
   }
@@ -17,19 +19,25 @@ const getApi = (url, successFunction) => {
 const postApi = (url, postData, successFunction) => {
   return dispatch => {
     axios.post(url, postData)
-      .then(function(resp) {
+      .then((resp) => {
         dispatch(successHandler[successFunction](resp))
+      }).catch((error) => {
+        dispatch(errorHandler(error))
       })
       // add error actions
   }
 }
 
+// We can handle errors generically, or have custom handlers
+const errorHandler = (data) => {
+    return { type: 'API_ERROR', data }
+}
 
 // Lets bundle these 'success' actions into an object
 // So we can dynamically call them from out API actions
 // They don't need to be used directly in components
 
-var successHandler={
+var successHandler = {
   getNameSuccess: function(data) {
     return { type: 'GET_NAME_SUCCESS', data }
   },
@@ -69,6 +77,14 @@ var successHandler={
 }
 
 // Export these actions so they _can_ be used in components
+
+// ERRORS
+
+// test error response from GET /name
+export const testNameError = () => {
+  const url = baseUrl + '/name-error'
+  return getApi(url, 'getNameSuccess')
+}
 
 // GET
 

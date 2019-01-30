@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Button, Container, Message } from 'semantic-ui-react'
 
 import {
+  testNameError,
   getName,
   getAudioFiles,
   getTranscriptionFiles,
@@ -22,32 +23,38 @@ class App extends Component {
   render = () => {
     const {
       name,
-      getName,
       audioFiles,
-      getAudioFiles,
       transcriptionFiles,
-      getTranscriptionFiles,
       additionalWordFiles,
-      getAdditionalWordFiles,
       pronunciationDictionary,
-      getPronunciationDictionary,
       settings,
+      apiResponse,
+      testNameError,
+      getName,
+      getAudioFiles,
+      getTranscriptionFiles,
+      getAdditionalWordFiles,
+      getPronunciationDictionary,
       getSettings,
       updateName,
       updateAudioFiles,
       updateTranscriptionFiles,
       updateAdditionalWordFiles,
       updatePronunciationDictionary,
-      updateSettings,
-      apiResponse
+      updateSettings
     } = this.props
 
     return (
       <Container>
 
         <Message color='teal' size="big">
-          <p>API response: <strong>{apiResponse.status}</strong></p>
+          <p>API response: <strong>{apiResponse}</strong></p>
         </Message>
+
+        <section>
+          <Button onClick={testNameError}>test get name error</Button>
+          <br />
+        </section>
 
         <section>
           <Button onClick={getName}>get name</Button>
@@ -99,16 +106,19 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    apiResponse: state.apiResponse,
     name: state.model.name,
     audioFiles: state.model.audioFiles,
     transcriptionFiles: state.model.transcriptionFiles,
     additionalWordFiles: state.model.additionalWordFiles,
     pronunciationDictionary: state.model.pronunciationDictionary,
-    settings: state.model.settings
+    settings: state.model.settings,
+    apiResponse: state.apiResponse
   }
 }
 const mapDispatchToProps = dispatch => ({
+  testNameError: () => {
+    dispatch(testNameError())
+  },
   getName: () => {
     dispatch(getName())
   },
