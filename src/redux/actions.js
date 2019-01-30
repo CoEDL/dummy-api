@@ -74,6 +74,9 @@ var successHandler = {
   },
   updateSettingsSuccess: function (data) {
     return { type: 'UPDATE_SETTINGS_SUCCESS', data }
+  },
+  testBlobSuccess: function (data) {
+    return { type: 'TEST_BLOB_SUCCESS', data }
   }
 }
 
@@ -139,5 +142,12 @@ export const updatePronunciationDictionary = (postData) => {
 export const updateSettings = (postData) => {
   const url = baseUrl + '/settings'
   return postApi(url, postData, 'updateSettingsSuccess')
+}
+
+// TEST BLOB
+
+export const testBlob = (postData) => {
+  const url = baseUrl + '/test-blob'
+  return postApi(url, postData, 'testBlobSuccess')
 }
 

@@ -15,10 +15,20 @@ import {
   updateTranscriptionFiles,
   updateAdditionalWordFiles,
   updatePronunciationDictionary,
-  updateSettings
+  updateSettings,
+  testBlob
 } from './redux/actions'
 
 class App extends Component {
+
+  handleBlob = () => {
+    const {testBlob} = this.props
+    const blob = new Blob(["i am a blob"]);
+    let fd = new FormData()
+    fd.append('fname', 'test.txt')
+    fd.append('data', blob)
+    testBlob(fd)
+  }
 
   render = () => {
     const {
@@ -98,6 +108,17 @@ class App extends Component {
           <Button onClick={() => updateSettings({"someSetting": 123})}>update settings</Button>
         </section>
 
+        <hr />
+
+        Blob test
+
+
+        <section>
+          <Button onClick={this.handleBlob}>Blob test</Button>
+        </section>
+
+
+
         <p>This app is at <a href="https://github.com/CoEDL/elpis-dummy-api">github.com/CoEDL/elpis-dummy-api</a></p>
 
       </Container>
@@ -154,6 +175,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateSettings: (data) => {
     dispatch(updateSettings(data))
+  },
+  testBlob: (data) => {
+    dispatch(testBlob(data))
   }
 })
 export default connect(
